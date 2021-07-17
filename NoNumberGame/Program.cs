@@ -28,7 +28,7 @@ namespace NoNumberGame
 			int uniformProj = -1;
 			ShaderProgram shaderProgram = new ShaderProgram(){id=0};
 			window.Load += () => {
-				shaderProgram = LoadShaderProgram("../../../../vertex_shader.glsl", "../../../../fragment_shader.glsl" );
+				shaderProgram = LoadShaderProgram("../../../vertex_shader.glsl", "../../../fragment_shader.glsl" );
 				uniformSaturation = GL.GetUniformLocation( shaderProgram.id, "saturation" );
 				uniformProj = GL.GetUniformLocation( shaderProgram.id, "proj" );
 			};
