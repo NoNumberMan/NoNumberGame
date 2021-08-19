@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame\\NoNumberGame.csproj": {}
+    "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame.csproj": {}
   },
   "projects": {
-    "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame\\NoNumberGame.csproj": {
+    "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame\\NoNumberGame.csproj",
+        "projectUniqueName": "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame.csproj",
         "projectName": "NoNumberGame",
-        "projectPath": "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame\\NoNumberGame.csproj",
+        "projectPath": "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame.csproj",
         "packagesPath": "C:\\Users\\tommy\\.nuget\\packages\\",
-        "outputPath": "D:\\GameDev\\NoNumberGame\\NoNumberGame\\NoNumberGame\\obj\\",
+        "outputPath": "D:\\GameDev\\NoNumberGame\\NoNumberGame\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tommy\\AppData\\Roaming\\NuGet\\NuGet.Config",
