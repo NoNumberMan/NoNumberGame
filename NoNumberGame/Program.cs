@@ -53,10 +53,12 @@ namespace NoNumberGame
 
 
 			GL.BindVertexArray( _terrainVao!.Value.vaoId );
-			GL.DrawElements( PrimitiveType.Triangles, _terrainVao!.Value.size - 1, DrawElementsType.UnsignedInt, _terrainVao!.Value.indexId );
+			GL.BindBuffer( BufferTarget.ElementArrayBuffer, _terrainVao!.Value.indexId );
+			GL.DrawElements( PrimitiveType.Triangles, _terrainVao!.Value.size, DrawElementsType.UnsignedInt, 0 );
 
 
 			_window!.SwapBuffers();
+			GL.DeleteProgram(shaderProgram.id);
 		}
 
 		private static void Terminate() {
