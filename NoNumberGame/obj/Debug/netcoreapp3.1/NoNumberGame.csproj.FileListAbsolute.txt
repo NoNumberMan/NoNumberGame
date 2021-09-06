@@ -54,3 +54,8 @@ D:\GameDev\NoNumberGame\NoNumberGame\bin\Debug\netcoreapp3.1\runtimes\win-x64\na
 D:\GameDev\NoNumberGame\NoNumberGame\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\glfw3.dll
 D:\GameDev\NoNumberGame\NoNumberGame\obj\Debug\netcoreapp3.1\NoNumberGame.csproj.CopyComplete
 D:\GameDev\NoNumberGame\NoNumberGame\obj\Debug\netcoreapp3.1\NoNumberGame.genruntimeconfig.cache
+D:\GameDev\NoNumberGame\NoNumberGame\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\GameDev\NoNumberGame\NoNumberGame\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+D:\GameDev\NoNumberGame\NoNumberGame\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\GameDev\NoNumberGame\NoNumberGame\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\GameDev\NoNumberGame\NoNumberGame\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

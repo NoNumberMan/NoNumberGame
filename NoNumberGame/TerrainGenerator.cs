@@ -13,12 +13,14 @@ namespace NoNumberGame
 
 
 
-		public static Mesh GenerateTerrain( /*TODO chunk_x, chunk_y*/ ) {
+		public static MeshModel GenerateTerrain( /*TODO chunk_x, chunk_y*/ ) {
 			float[] heightmap = NoiseGenerator.GenerateNoise2D( 0, 0, 256, 256, 4,
-				new[] { 2, 8, 32, 128 }, new[] { 0.04f, 0.1f, 1.0f, 0.4f } );
+				new uint[] { 2, 8, 32, 128 }, new[] { 0.04f, 0.1f, 1.0f, 0.4f } );
 
 			float[] vertexArray = new float[256 * 256 * 3];
+			float[] normalArray = new float[256 * 256 * 3]; //TODO fill this
 			float[] colorArray  = new float[256 * 256 * 3];
+			float[] texcoordArray = new float[256 * 256 * 3];
 			int[]   indexArray  = new int[255 * 255 * 6];
 
 			Random rand = new Random();
@@ -27,7 +29,7 @@ namespace NoNumberGame
 				float y = heightmap[x + 256 * z];
 
 				vertexArray[3 * ( x + 256 * z ) + 0] = x - 0.0f;
-				vertexArray[3 * ( x + 256 * z ) + 1] = -y * 64.0f;
+				vertexArray[3 * ( x + 256 * z ) + 1] = y * 64.0f;
 				vertexArray[3 * ( x + 256 * z ) + 2] = z - 0.0f;
 
 				int   colorIndex = 0;
@@ -64,7 +66,9 @@ namespace NoNumberGame
 				colorArray[3 * indexArray[3 * i + 2] + 2] *= dc;
 			}
 
-			return new Mesh( vertexArray, colorArray, new float[0], indexArray );
+			MeshModel model = new MeshModel();
+			model.AddMesh( "terrain", new Mesh( vertexArray, normalArray, colorArray, texcoordArray, indexArray ) );
+			return model;
 		}
 	}
 }
