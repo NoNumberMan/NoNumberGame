@@ -1,77 +1,73 @@
-﻿using OpenTK.Mathematics;
+﻿using System;
+using OpenTK.Mathematics;
 
 namespace NoNumberGame
 {
 	public class Camera
 	{
-		private float _x;
-		private float _y;
-		private float _z;
+		private Vector3 _pos;
+		private Vector3 _vel;
 
-		private float _pitch;
-		private float _yaw;
-		private float _roll;
+		private Vector3 _ang;
+		private Vector3 _angvel;
+
+		private float _velmul    = 0.024f;
+		private float _angvelmul = 0.024f;
+		private float _drag      = 0.02f;
+
 
 		public Camera( float x, float y, float z, float pitch, float yaw, float roll ) {
-			_x     = x;
-			_y     = y;
-			_z     = z;
-			_pitch = pitch;
-			_yaw   = yaw;
-			_roll  = roll;
+			_pos    = new Vector3( x, y, z );
+			_ang    = new Vector3( pitch, yaw, roll );
+			_vel    = Vector3.Zero;
+			_angvel = Vector3.Zero;
 		}
 
 		public Camera() : this( 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f ) { }
 
 
+		public void Update() {
+			_pos += _velmul    * _vel;
+			_ang += _angvelmul * _angvel;
 
-		internal Matrix4 GetMatrix() {
-			return Matrix4.CreateTranslation( _x, _y, _z ) * Matrix4.CreateFromQuaternion( Quaternion.FromEulerAngles( _pitch, _yaw, _roll ) );
+			_vel    *= ( 1.0f - _drag );
+			_angvel *= ( 1.0f - _drag );
 		}
 
-		public void Translate( float dx, float dy, float dz ) {
-			_x += dx;
-			_y += dy;
-			_z += dz;
+		public Matrix4 GetMatrix() {
+			return ( Matrix4.CreateTranslation( _pos ) * Matrix4.CreateFromQuaternion( Quaternion.FromEulerAngles( _ang ) ) );
+		}
+
+		public Vector3 GetDirection() {
+			return ( -Vector4.UnitZ * GetMatrix().Inverted() ).Xyz;
+		}
+
+		public Vector3 GetPosition() {
+			return _pos;
 		}
 
 		public void SetPosition( float x, float y, float z ) {
-			_x = x;
-			_y = y;
-			_z = z;
+			_pos = new Vector3( x, y, z );
 		}
 
-		public void MoveForwards( float distance ) {
-			( float x, float y, float z, _ ) =  Vector4.UnitZ * Matrix4.CreateFromQuaternion( Quaternion.FromEulerAngles( _pitch, _yaw, _roll ) ).Inverted();
-			_x                               += distance      * x;
-			_y                               += distance      * y;
-			_z                               += distance      * z;
+		public void SetVelocity( float dx, float dy, float dz ) {
+			_vel = new Vector3( dx, dy, dz );
 		}
 
-		public void MoveSideways( float distance ) {
-			( float x, float y, float z, _ ) =  Vector4.UnitX * Matrix4.CreateFromQuaternion( Quaternion.FromEulerAngles( _pitch, _yaw, _roll ) ).Inverted();
-			_x                               += distance      * x;
-			_y                               += distance      * y;
-			_z                               += distance      * z;
+		public void SetAngle( float pitch, float yaw, float roll ) {
+			_ang = new Vector3( pitch, yaw, roll );
 		}
 
-		public void MoveUpwards( float distance ) {
-			( float x, float y, float z, _ ) =  Vector4.UnitY * Matrix4.CreateFromQuaternion( Quaternion.FromEulerAngles( _pitch, _yaw, _roll ) ).Inverted();
-			_x                               += distance      * x;
-			_y                               += distance      * y;
-			_z                               += distance      * z;
+		public void SetAngularVelocity( float dpitch, float dyaw, float droll ) {
+			_angvel = new Vector3( dpitch, dyaw, droll );
 		}
 
-		public void Rotate( float dpitch, float dyaw, float droll ) {
-			_pitch += dpitch;
-			_yaw   += dyaw;
-			_roll  += droll;
+		public void AccDir( float intensity, Vector3 dir ) {
+			_vel += intensity * dir;
 		}
 
-		public void SetRotation( float pitch, float yaw, float roll ) {
-			_pitch = pitch;
-			_yaw   = yaw;
-			_roll  = roll;
+		public void AccAngle( float ddpitch, float ddyaw, float ddroll ) {
+			_angvel += new Vector3( ddpitch, ddyaw, ddroll );
 		}
 	}
 }
